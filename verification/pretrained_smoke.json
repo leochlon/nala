@@ -1,0 +1,48 @@
+{
+  "status": "verified",
+  "version": "0.4.0",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "candidate_count": 27,
+  "counts": {
+    "capture_prefix_forwards": 1,
+    "capture_query_forwards": 2,
+    "capture_backwards": 1,
+    "capture_items": 2,
+    "capture_query_rows": 8,
+    "backward": 1,
+    "model_calls_for_scoring": 0,
+    "model_calls_for_analytic_scoring": 0,
+    "model_calls_for_greedy_rescoring": 0,
+    "baseline_teacher_forced_forwards": 2,
+    "noop_teacher_forced_forwards": 2,
+    "candidate_verification_forwards": 4,
+    "selection_verification_forwards": 2,
+    "candidates_executed": 2,
+    "preflight_counted_separately": true
+  },
+  "all_capture_checks": true,
+  "all_top_k_checks": true,
+  "selection_verified": true,
+  "top_k": [
+    {
+      "rank": 1,
+      "layer": 0,
+      "edit": {
+        "kind": "delete"
+      },
+      "predicted_loss_change": 0.12177151621500208,
+      "actual_loss_change": 0.12077569961547852
+    },
+    {
+      "rank": 2,
+      "layer": 0,
+      "edit": {
+        "kind": "reweight",
+        "factor": 2.0
+      },
+      "predicted_loss_change": -0.09998911795976109,
+      "actual_loss_change": -0.09769535064697266
+    }
+  ]
+}

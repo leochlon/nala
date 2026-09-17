@@ -1,0 +1,82 @@
+{
+  "scope": "Colab preparation and local validation; 7B CUDA inference has not been run.",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+  "layer": 18,
+  "context_limit": 512,
+  "arithmetic": "FP32 eager attention; one layer per edit",
+  "local_environment": {
+    "python": "3.12.12",
+    "torch": "2.10.0",
+    "transformers": "4.57.3",
+    "accelerate": "1.15.0",
+    "nbformat": "5.11.1",
+    "cuda_available": false
+  },
+  "regression": {
+    "command": ".venv/bin/python -m pytest -q tests",
+    "result": "44 passed in 2.76s",
+    "raw_output": "colab7b_tests.txt"
+  },
+  "seven_b_meta_only": {
+    "parameter_count": 7615616512,
+    "fp32_weight_bytes": 30462466048,
+    "fp32_weight_gib": 28.37038230895996,
+    "parameters_on_meta": true,
+    "fp32": true,
+    "layers": 28,
+    "attention": "eager",
+    "sliding_windows_disabled": true,
+    "fixed_unscaled_rope": true,
+    "checkpoint_weights_downloaded": false,
+    "cuda_available": false
+  },
+  "cpu_workflow_smoke": {
+    "command": ".venv/bin/python eval_value.py --model Qwen/Qwen2.5-0.5B-Instruct --revision 7ae557604adf67be50417f59c2c2f167def9a775 --device cpu --layer 18 --context-limit 512 --local-only --out .verification/colab-selector-smoke",
+    "passed": true,
+    "correctness_passed": true,
+    "quality_passed": true,
+    "quality": {
+      "mean_spearman": 0.96,
+      "rank_groups_scored": 10,
+      "rank_groups_total": 10,
+      "sign_agreement": 1.0,
+      "material_edits": 39,
+      "mean_mae_nats_per_token": 0.0010355292898819256,
+      "mean_top1_regret_nats_per_token": 0.0,
+      "mean_greedy_gain_over_random": 0.036028141426952855,
+      "mean_greedy_gain_over_static": 0.0,
+      "mean_greedy_regret_nats_per_token": 0.0,
+      "support_top1_rate": 0.6
+    },
+    "quality_gates": {
+      "rank_agreement": true,
+      "sign_agreement": true,
+      "greedy_vs_random": true
+    },
+    "identity": {
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+      "instrument": "0.4.0",
+      "torch": "2.10.0",
+      "transformers": "4.57.3",
+      "device": "cpu",
+      "dtype": "float32",
+      "attention": "eager"
+    },
+    "fixture_sha256": "3a80c72c6468e84cbbeb8b246ed09b24294a2ea22e6746a8c9d5eb6d88206417",
+    "layer": 18,
+    "context_limit": 512,
+    "timing_seconds": {
+      "model_load": 2.9224374999757856,
+      "evaluation": 11.933140957960859,
+      "total": 14.8555785829667
+    },
+    "target_swap": {
+      "same_prompt": true,
+      "different_targets": true,
+      "top_span_changed": false
+    }
+  },
+  "remaining_validation": "Run notebooks/NaLa_7B_Colab.ipynb on an A100 40 GB or larger; inspect the actual 7B correctness/quality reports and GPU timing."
+}

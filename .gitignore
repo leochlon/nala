@@ -1,0 +1,7 @@
+.venv/
+.verification/
+__pycache__/
+.pytest_cache/
+runs/
+nala-results/
+*.pyc

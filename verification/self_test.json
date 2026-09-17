@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "dense_edit_comparisons": 304,
+  "edit_kinds": 7,
+  "multirow_dense_edit_comparisons": 304,
+  "default_templates": 16,
+  "other_gates": [
+    "global ranking",
+    "exact no-op",
+    "minimum-norm 4:1 solver",
+    "effective-step readout",
+    "finite RoPE",
+    "precision restoration",
+    "recorded expressions",
+    "recorded finite response",
+    "strict case assessment"
+  ],
+  "native_inference_tested": false,
+  "note": "Live inference must pass model-specific preflight; callable checks and fixed-check repair are distinct."
+}

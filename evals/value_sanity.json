@@ -1,0 +1,40 @@
+{
+  "protocol": "heldout-user-sanity-v1",
+  "cases": [
+    {
+      "id": "archive_target",
+      "prompt": "Read these notes and state one fact from them.\nArchive code: cedar.\nGarden color: amber.\nMeeting day: Tuesday.\nDelivery city: Lisbon.",
+      "spans": ["Archive code: cedar.", "Garden color: amber.", "Meeting day: Tuesday.", "Delivery city: Lisbon."],
+      "heldout": ["The archive code is cedar.", {"text": "cedar", "weight": 0.5}],
+      "support": [0]
+    },
+    {
+      "id": "garden_target",
+      "prompt": "Read these notes and state one fact from them.\nArchive code: cedar.\nGarden color: amber.\nMeeting day: Tuesday.\nDelivery city: Lisbon.",
+      "spans": ["Archive code: cedar.", "Garden color: amber.", "Meeting day: Tuesday.", "Delivery city: Lisbon."],
+      "heldout": ["The garden color is amber.", {"text": "amber", "weight": 0.5}],
+      "support": [1]
+    },
+    {
+      "id": "current_api",
+      "prompt": "Use the current SDK. State its session function.\nCurrent SDK: create_session(token=TOKEN).\nLegacy SDK: open_session(api_key=TOKEN).\nThe package is installed with pip.\nHTTP requests use headers.",
+      "spans": ["Current SDK: create_session(token=TOKEN).", "Legacy SDK: open_session(api_key=TOKEN).", "The package is installed with pip.", "HTTP requests use headers."],
+      "heldout": ["create_session(token=TOKEN)", {"text": "create_session", "weight": 0.5}],
+      "support": [0]
+    },
+    {
+      "id": "two_facts",
+      "prompt": "Where does Rin work, and when does that office start?\nRin works in Lima.\nThe Lima office starts at nine.\nThe Seattle office starts at ten.\nThe building has four floors.",
+      "spans": ["Rin works in Lima.", "The Lima office starts at nine.", "The Seattle office starts at ten.", "The building has four floors."],
+      "heldout": ["Rin works in Lima and starts at nine.", {"text": "Lima, nine.", "weight": 0.5}],
+      "support": [0, 1]
+    },
+    {
+      "id": "redundant_evidence",
+      "prompt": "State the archive code and pickup day.\nArchive code: cedar.\nThe archive code is cedar.\nPickup day: Friday.\nGarden color: amber.",
+      "spans": ["Archive code: cedar.", "The archive code is cedar.", "Pickup day: Friday.", "Garden color: amber."],
+      "heldout": ["The archive code is cedar and pickup is Friday.", {"text": "cedar, Friday.", "weight": 0.5}],
+      "support": [0, 1, 2]
+    }
+  ]
+}

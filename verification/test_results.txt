@@ -1,0 +1,40 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.12, pytest-9.0.3, pluggy-1.6.0
+rootdir: .
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 32 items
+
+tests/test_heldout.py::test_capture_is_one_backward_and_items_are_independent PASSED [  3%]
+tests/test_heldout.py::test_execution_matches_full_prefix_oracle[edit0-0] PASSED [  6%]
+tests/test_heldout.py::test_execution_matches_full_prefix_oracle[edit0-1] PASSED [  9%]
+tests/test_heldout.py::test_execution_matches_full_prefix_oracle[edit1-0] PASSED [ 12%]
+tests/test_heldout.py::test_execution_matches_full_prefix_oracle[edit1-1] PASSED [ 15%]
+tests/test_heldout.py::test_execution_matches_full_prefix_oracle[edit2-0] PASSED [ 18%]
+tests/test_heldout.py::test_execution_matches_full_prefix_oracle[edit2-1] PASSED [ 21%]
+tests/test_heldout.py::test_execution_matches_full_prefix_oracle[edit3-0] PASSED [ 25%]
+tests/test_heldout.py::test_execution_matches_full_prefix_oracle[edit3-1] PASSED [ 28%]
+tests/test_heldout.py::test_multiquery_gradient_matches_finite_difference PASSED [ 31%]
+tests/test_heldout.py::test_rank_sums_items_and_queries_but_keeps_layers_separate PASSED [ 34%]
+tests/test_heldout.py::test_greedy_rescores_against_dense_cumulative_deletion[1] PASSED [ 37%]
+tests/test_heldout.py::test_greedy_rescores_against_dense_cumulative_deletion[2] PASSED [ 40%]
+tests/test_heldout.py::test_greedy_rescores_against_dense_cumulative_deletion[3] PASSED [ 43%]
+tests/test_heldout.py::test_causal_masks_zero_invisible_edits_and_refuse_empty_rows PASSED [ 46%]
+tests/test_heldout.py::test_portable_capture_roundtrip_and_legacy_margin PASSED [ 50%]
+tests/test_heldout.py::test_single_token_prompt_and_continuation PASSED  [ 53%]
+tests/test_heldout.py::test_invalid_heldout_items[items0] PASSED         [ 56%]
+tests/test_heldout.py::test_invalid_heldout_items[] PASSED               [ 59%]
+tests/test_heldout.py::test_invalid_heldout_items[items2] PASSED         [ 62%]
+tests/test_heldout.py::test_invalid_heldout_items[items3] PASSED         [ 65%]
+tests/test_heldout.py::test_invalid_heldout_items[items4] PASSED         [ 68%]
+tests/test_heldout.py::test_invalid_heldout_items[items5] PASSED         [ 71%]
+tests/test_heldout.py::test_invalid_heldout_items[items6] PASSED         [ 75%]
+tests/test_heldout.py::test_invalid_heldout_items[items7] PASSED         [ 78%]
+tests/test_heldout.py::test_cancellation_restores_model_state PASSED     [ 81%]
+tests/test_heldout.py::test_value_report_and_cli_roundtrip PASSED        [ 84%]
+tests/test_heldout.py::test_zero_top_k_still_scores_every_prompt_token PASSED [ 87%]
+tests/test_heldout.py::test_token_selection_preserves_anchor_and_executes_final_subset PASSED [ 90%]
+tests/test_heldout.py::test_spans_boundaries_and_selection_input_errors PASSED [ 93%]
+tests/test_heldout.py::test_cli_rejects_invalid_json_before_loading PASSED [ 96%]
+tests/test_heldout.py::test_mcp_schema_and_live_value PASSED             [100%]
+
+============================== 32 passed in 2.78s ==============================

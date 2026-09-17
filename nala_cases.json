@@ -1,0 +1,838 @@
+{
+ "_comment": "Recorded evidence for NaLa. Loaded by nala.py; keep beside it.",
+ "version": "0.3.0-consolidated",
+ "RECORDED_CASE": {
+  "model": {
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+   "instrument_version": "0.2.0",
+   "torch": "2.8.0+cpu",
+   "transformers": "4.57.3",
+   "device": "cpu",
+   "dtype": "float32",
+   "attention": "eager",
+   "context_limit": 16384,
+   "output_limit": 512
+  },
+  "source_record_sha256": "accd6ab47454cf18414aa600e4d06765a634264bc0a6f57c4592f731611f7b84",
+  "scope": "One adaptively selected synthetic task, a supplied correct ranking target, and six fixed inputs. This is not a benchmark or proof that attention uniquely caused the failure.",
+  "recorded_candidate_count": 109080,
+  "selected_edit": {
+   "layer": 21,
+   "template_index": 5,
+   "span_index": 79,
+   "indices": [
+    79
+   ],
+   "edit": {
+    "kind": "reweight",
+    "factor": 64.0
+   },
+   "predicted_margin_change": 11.36097005725132,
+   "rank": 1,
+   "tokens": [
+    " legacy"
+   ]
+  },
+  "baseline_margin": -6.683786392211914,
+  "predicted_margin_change": 11.36097005725132,
+  "actual_margin_change": 9.398860931396484,
+  "confirmation_reported": true,
+  "branches": [
+   {
+    "name": "ordinary",
+    "expression": "lookup(value)",
+    "recorded_tests_passed": 0
+   },
+   {
+    "name": "source_emphasis",
+    "expression": "current(value)",
+    "recorded_tests_passed": 1
+   },
+   {
+    "name": "noop_attention",
+    "expression": "lookup(value)",
+    "recorded_tests_passed": 0
+   },
+   {
+    "name": "ranked_attention_1",
+    "expression": "legacy(current(value))",
+    "recorded_tests_passed": 6
+   }
+  ],
+  "projected_capture": {
+   "source": "selected_layer_capture.npz in the original repair notebook",
+   "token_probability_by_head": [
+    0.0010543474190244583,
+    0.021331047776637246,
+    0.08175322889785107,
+    0.00890448057037873,
+    0.034820825636958444,
+    0.0008211102879310925,
+    0.0043142425199132455,
+    6.216141642706992e-06,
+    0.024307401700394995,
+    3.847423449963254e-07,
+    0.11438554809658086,
+    0.15418053322007724,
+    0.0005756614335630481,
+    0.003389260198854264
+   ],
+   "gradient_dot_value_minus_readout": [
+    -1.571392421149863,
+    0.9512705098378553,
+    2.896025023134296,
+    0.4705015421429459,
+    0.3061805550750904,
+    -0.9030360470547087,
+    0.750810313272228,
+    0.5456359631394352,
+    1.2384851967213546,
+    0.38287850265887224,
+    4.821632415965917,
+    3.2286956705682033,
+    -5.876779635232579,
+    1.6348017592118302
+   ]
+  }
+ },
+ "_BUNDLED_CASE": {
+  "case": {
+   "id": "20-composed-legacy-extended-odds-expressions",
+   "correct": "legacy",
+   "competing": "current",
+   "legacy_examples": 8,
+   "emphasis": "full_source",
+   "avoid_call": "lookup(value)",
+   "api_style": "composed",
+   "edit_templates": [
+    {
+     "kind": "reweight",
+     "factor": 2.0
+    },
+    {
+     "kind": "reweight",
+     "factor": 4.0
+    },
+    {
+     "kind": "reweight",
+     "factor": 8.0
+    },
+    {
+     "kind": "reweight",
+     "factor": 16.0
+    },
+    {
+     "kind": "reweight",
+     "factor": 32.0
+    },
+    {
+     "kind": "reweight",
+     "factor": 64.0
+    },
+    {
+     "kind": "reweight",
+     "factor": 0.5
+    },
+    {
+     "kind": "delete"
+    },
+    {
+     "kind": "value_scale",
+     "factor": 0.0
+    },
+    {
+     "kind": "position",
+     "delta": -16.0,
+     "band": "fast"
+    },
+    {
+     "kind": "position",
+     "delta": 16.0,
+     "band": "fast"
+    },
+    {
+     "kind": "position",
+     "delta": -16.0,
+     "band": "middle"
+    },
+    {
+     "kind": "position",
+     "delta": 16.0,
+     "band": "middle"
+    },
+    {
+     "kind": "position",
+     "delta": -16.0,
+     "band": "slow"
+    },
+    {
+     "kind": "position",
+     "delta": 16.0,
+     "band": "slow"
+    }
+   ],
+   "expression_calls": true
+  },
+  "discovery": {
+   "schema_version": 1,
+   "status": "candidate_passed",
+   "identity": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "instrument_version": "0.2.0",
+    "torch": "2.8.0+cpu",
+    "transformers": "4.57.3",
+    "device": "cpu",
+    "dtype": "float32",
+    "attention": "eager",
+    "context_limit": 16384,
+    "output_limit": 512
+   },
+   "selected": "ranked_attention_1",
+   "branches": [
+    {
+     "name": "ordinary",
+     "status": "failed",
+     "prompt_hash": "07ed5b5832e17727c313d2402ff10d6ecae3d2aa453a2c85a9ee7591ed948585",
+     "generation_file": "ordinary_generation.json",
+     "generated_tokens": 4,
+     "verified_queries": 0,
+     "check": {
+      "passed": false,
+      "exit_code": 1,
+      "timeout": false,
+      "cancelled": false,
+      "seconds": 0.06544908999785548,
+      "command": [
+       "/workspace/scratch/2a9513a32f50/.nala_env/bin/python",
+       "-B",
+       "-m",
+       "unittest",
+       "-q"
+      ],
+      "output": "======================================================================\nERROR: test_empty (test_client.TestCanonical.test_empty)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/ordinary/test_client.py\", line 9, in test_empty\n    def test_empty(self): self.assertEqual(lookup(\"\"), \"\")\n                                           ^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/ordinary/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n======================================================================\nERROR: test_mixed_case (test_client.TestCanonical.test_mixed_case)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/ordinary/test_client.py\", line 5, in test_mixed_case\n    def test_mixed_case(self): self.assertEqual(lookup(\"rOmE\"), \"ROME\")\n                                                ^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/ordinary/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n======================================================================\nERROR: test_punctuation (test_client.TestCanonical.test_punctuation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/ordinary/test_client.py\", line 10, in test_punctuation\n    def test_punctuation(self): self.assertEqual(lookup(\" a-b! \"), \"A-B!\")\n                                                 ^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/ordinary/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n======================================================================\nERROR: test_spaces (test_client.TestCanonical.test_spaces)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/ordinary/test_client.py\", line 6, in test_spaces\n    def test_spaces(self): self.assertEqual(lookup(\"  Maya  \"), \"MAYA\")\n                                            ^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/ordinary/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n======================================================================\nERROR: test_tabs (test_client.TestCanonical.test_tabs)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/ordinary/test_client.py\", line 7, in test_tabs\n    def test_tabs(self): self.assertEqual(lookup(\"\\tParis\\n\"), \"PARIS\")\n                                          ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/ordinary/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n======================================================================\nERROR: test_unicode (test_client.TestCanonical.test_unicode)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/ordinary/test_client.py\", line 8, in test_unicode\n    def test_unicode(self): self.assertEqual(lookup(\" café \"), \"CAFÉ\")\n                                             ^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/ordinary/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n----------------------------------------------------------------------\nRan 6 tests in 0.002s\n\nFAILED (errors=6)\n",
+      "output_truncated": false
+     },
+     "generated_call": "lookup(value)",
+     "edits": [
+      {
+       "old": "api.removed(value)",
+       "new": "api.lookup(value)"
+      }
+     ]
+    },
+    {
+     "name": "source_emphasis",
+     "status": "failed",
+     "prompt_hash": "0fd3397c9833e694b099baa2c111c7fb962a12c6071b870ea06af940ce25d937",
+     "generation_file": "source_emphasis_generation.json",
+     "generated_tokens": 4,
+     "verified_queries": 0,
+     "check": {
+      "passed": false,
+      "exit_code": 1,
+      "timeout": false,
+      "cancelled": false,
+      "seconds": 0.06516186500084586,
+      "command": [
+       "/workspace/scratch/2a9513a32f50/.nala_env/bin/python",
+       "-B",
+       "-m",
+       "unittest",
+       "-q"
+      ],
+      "output": "======================================================================\nFAIL: test_mixed_case (test_client.TestCanonical.test_mixed_case)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/source_emphasis/test_client.py\", line 5, in test_mixed_case\n    def test_mixed_case(self): self.assertEqual(lookup(\"rOmE\"), \"ROME\")\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'rome' != 'ROME'\n- rome\n+ ROME\n\n\n======================================================================\nFAIL: test_punctuation (test_client.TestCanonical.test_punctuation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/source_emphasis/test_client.py\", line 10, in test_punctuation\n    def test_punctuation(self): self.assertEqual(lookup(\" a-b! \"), \"A-B!\")\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'a-b!' != 'A-B!'\n- a-b!\n+ A-B!\n\n\n======================================================================\nFAIL: test_spaces (test_client.TestCanonical.test_spaces)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/source_emphasis/test_client.py\", line 6, in test_spaces\n    def test_spaces(self): self.assertEqual(lookup(\"  Maya  \"), \"MAYA\")\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'maya' != 'MAYA'\n- maya\n+ MAYA\n\n\n======================================================================\nFAIL: test_tabs (test_client.TestCanonical.test_tabs)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/source_emphasis/test_client.py\", line 7, in test_tabs\n    def test_tabs(self): self.assertEqual(lookup(\"\\tParis\\n\"), \"PARIS\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'paris' != 'PARIS'\n- paris\n+ PARIS\n\n\n======================================================================\nFAIL: test_unicode (test_client.TestCanonical.test_unicode)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/source_emphasis/test_client.py\", line 8, in test_unicode\n    def test_unicode(self): self.assertEqual(lookup(\" café \"), \"CAFÉ\")\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'café' != 'CAFÉ'\n- café\n+ CAFÉ\n\n\n----------------------------------------------------------------------\nRan 6 tests in 0.001s\n\nFAILED (failures=5)\n",
+      "output_truncated": false
+     },
+     "generated_call": "current(value)",
+     "edits": [
+      {
+       "old": "api.removed(value)",
+       "new": "api.current(value)"
+      }
+     ]
+    },
+    {
+     "name": "ranked_attention_1",
+     "status": "passed",
+     "prompt_hash": "07ed5b5832e17727c313d2402ff10d6ecae3d2aa453a2c85a9ee7591ed948585",
+     "generation_file": "ranked_attention_1_generation.json",
+     "generated_tokens": 5,
+     "verified_queries": 1,
+     "cache_edit": {
+      "layer": 21,
+      "template_index": 5,
+      "span_index": 79,
+      "indices": [
+       79
+      ],
+      "edit": {
+       "kind": "reweight",
+       "factor": 64.0
+      },
+      "predicted_margin_change": 11.36097005725132,
+      "rank": 1,
+      "tokens": [
+       " legacy"
+      ]
+     },
+     "margin": {
+      "predicted_change": 11.36097005725132,
+      "actual_change": 9.398860931396484
+     },
+     "check": {
+      "passed": true,
+      "exit_code": 0,
+      "timeout": false,
+      "cancelled": false,
+      "seconds": 0.06510872299986659,
+      "command": [
+       "/workspace/scratch/2a9513a32f50/.nala_env/bin/python",
+       "-B",
+       "-m",
+       "unittest",
+       "-q"
+      ],
+      "output": "----------------------------------------------------------------------\nRan 6 tests in 0.000s\n\nOK\n",
+      "output_truncated": false
+     },
+     "generated_call": "legacy(current(value))",
+     "edits": [
+      {
+       "old": "api.removed(value)",
+       "new": "api.legacy(api.current(value))"
+      }
+     ]
+    }
+   ],
+   "objective": {
+    "kind": "first_distinct_next_token_logit_margin",
+    "prefer": "legacy(value)",
+    "avoid": "lookup(value)",
+    "prefer_id": 39884,
+    "avoid_id": 21020,
+    "shared_token_prefix": [],
+    "prefix": "",
+    "forced_ids": [],
+    "forced_text": "",
+    "prefer_token": "legacy",
+    "avoid_token": "lookup",
+    "is_full_continuation_likelihood": false
+   },
+   "case": {
+    "id": "20-composed-legacy-extended-odds-expressions",
+    "correct": "legacy",
+    "competing": "current",
+    "legacy_examples": 8,
+    "emphasis": "full_source",
+    "avoid_call": "lookup(value)",
+    "api_style": "composed",
+    "edit_templates": [
+     {
+      "kind": "reweight",
+      "factor": 2.0
+     },
+     {
+      "kind": "reweight",
+      "factor": 4.0
+     },
+     {
+      "kind": "reweight",
+      "factor": 8.0
+     },
+     {
+      "kind": "reweight",
+      "factor": 16.0
+     },
+     {
+      "kind": "reweight",
+      "factor": 32.0
+     },
+     {
+      "kind": "reweight",
+      "factor": 64.0
+     },
+     {
+      "kind": "reweight",
+      "factor": 0.5
+     },
+     {
+      "kind": "delete"
+     },
+     {
+      "kind": "value_scale",
+      "factor": 0.0
+     },
+     {
+      "kind": "position",
+      "delta": -16.0,
+      "band": "fast"
+     },
+     {
+      "kind": "position",
+      "delta": 16.0,
+      "band": "fast"
+     },
+     {
+      "kind": "position",
+      "delta": -16.0,
+      "band": "middle"
+     },
+     {
+      "kind": "position",
+      "delta": 16.0,
+      "band": "middle"
+     },
+     {
+      "kind": "position",
+      "delta": -16.0,
+      "band": "slow"
+     },
+     {
+      "kind": "position",
+      "delta": 16.0,
+      "band": "slow"
+     }
+    ],
+    "expression_calls": true
+   },
+   "response_contract": "nested unary API calls ending in value; every call mechanically qualified with api",
+   "workspace_manifest": {
+    "api.py": "c1c6cb8cef0bf3ce912d97f116d026a5040b83bf3a6b79a5e4ad95b65e00e9a5",
+    "client.py": "f73b054e0858508d6dceb368b8b27c2588ee9dba811bdf3dc539ec3f1f3b3a0c",
+    "legacy_examples.txt": "55442b8fa46444f136c72334306a50954c048a7cdaa438ae3a7397ef4035034a",
+    "test_client.py": "df5c63a2fa7d43bd874cb3f6b75a5c6435b568eb95edd06a38ce0a2673a7bbe8"
+   },
+   "workspace_hash": "f9876a6302a8cb2402a0fc41d9c582064b8ad01750b94da5aa4e5909f74ed2e5",
+   "target_file": "client.py",
+   "protocol": {
+    "check": [
+     "/workspace/scratch/2a9513a32f50/.nala_env/bin/python",
+     "-B",
+     "-m",
+     "unittest",
+     "-q"
+    ],
+    "seed": 37,
+    "temperature": 0,
+    "max_tokens": 32,
+    "generation": "greedy, independent caches, same ordinary/attention prompt",
+    "early_stop": "first passing candidate",
+    "live_files_modified": false
+   },
+   "baseline_check": {
+    "passed": false,
+    "exit_code": 1,
+    "timeout": false,
+    "cancelled": false,
+    "seconds": 0.06498438300332054,
+    "command": [
+     "/workspace/scratch/2a9513a32f50/.nala_env/bin/python",
+     "-B",
+     "-m",
+     "unittest",
+     "-q"
+    ],
+    "output": "======================================================================\nERROR: test_empty (test_client.TestCanonical.test_empty)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/baseline/test_client.py\", line 9, in test_empty\n    def test_empty(self): self.assertEqual(lookup(\"\"), \"\")\n                                           ^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/baseline/client.py\", line 5, in lookup\n    return api.removed(value)\n           ^^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'removed'\n\n======================================================================\nERROR: test_mixed_case (test_client.TestCanonical.test_mixed_case)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/baseline/test_client.py\", line 5, in test_mixed_case\n    def test_mixed_case(self): self.assertEqual(lookup(\"rOmE\"), \"ROME\")\n                                                ^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/baseline/client.py\", line 5, in lookup\n    return api.removed(value)\n           ^^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'removed'\n\n======================================================================\nERROR: test_punctuation (test_client.TestCanonical.test_punctuation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/baseline/test_client.py\", line 10, in test_punctuation\n    def test_punctuation(self): self.assertEqual(lookup(\" a-b! \"), \"A-B!\")\n                                                 ^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/baseline/client.py\", line 5, in lookup\n    return api.removed(value)\n           ^^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'removed'\n\n======================================================================\nERROR: test_spaces (test_client.TestCanonical.test_spaces)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/baseline/test_client.py\", line 6, in test_spaces\n    def test_spaces(self): self.assertEqual(lookup(\"  Maya  \"), \"MAYA\")\n                                            ^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/baseline/client.py\", line 5, in lookup\n    return api.removed(value)\n           ^^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'removed'\n\n======================================================================\nERROR: test_tabs (test_client.TestCanonical.test_tabs)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/baseline/test_client.py\", line 7, in test_tabs\n    def test_tabs(self): self.assertEqual(lookup(\"\\tParis\\n\"), \"PARIS\")\n                                          ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/baseline/client.py\", line 5, in lookup\n    return api.removed(value)\n           ^^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'removed'\n\n======================================================================\nERROR: test_unicode (test_client.TestCanonical.test_unicode)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/baseline/test_client.py\", line 8, in test_unicode\n    def test_unicode(self): self.assertEqual(lookup(\" café \"), \"CAFÉ\")\n                                             ^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_api_expressions/case_000/attempt_1788972987949105215/baseline/client.py\", line 5, in lookup\n    return api.removed(value)\n           ^^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'removed'\n\n----------------------------------------------------------------------\nRan 6 tests in 0.001s\n\nFAILED (errors=6)\n",
+    "output_truncated": false
+   },
+   "selection": {
+    "method": "exact finite local write contracted with baseline gradient",
+    "candidate_count": 109080,
+    "counts": {
+     "prefix_forward": 1,
+     "baseline_query_forward": 1,
+     "backward": 1,
+     "model_calls_for_scoring": 0,
+     "candidate_forwards": 0
+    },
+    "baseline_margin": -6.683786392211914,
+    "frozen_candidate_replay": false
+   },
+   "edits": [
+    {
+     "old": "api.removed(value)",
+     "new": "api.legacy(api.current(value))"
+    }
+   ]
+  },
+  "confirmation": {
+   "schema_version": 1,
+   "status": "candidate_passed",
+   "identity": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "instrument_version": "0.2.0",
+    "torch": "2.8.0+cpu",
+    "transformers": "4.57.3",
+    "device": "cpu",
+    "dtype": "float32",
+    "attention": "eager",
+    "context_limit": 16384,
+    "output_limit": 512
+   },
+   "selected": "ranked_attention_1",
+   "branches": [
+    {
+     "name": "ordinary",
+     "status": "failed",
+     "prompt_hash": "07ed5b5832e17727c313d2402ff10d6ecae3d2aa453a2c85a9ee7591ed948585",
+     "generation_file": "ordinary_generation.json",
+     "generated_tokens": 4,
+     "verified_queries": 0,
+     "check": {
+      "passed": false,
+      "exit_code": 1,
+      "timeout": false,
+      "cancelled": false,
+      "seconds": 0.065195698000025,
+      "command": [
+       "/workspace/scratch/2a9513a32f50/.nala_env/bin/python",
+       "-B",
+       "-m",
+       "unittest",
+       "-q"
+      ],
+      "output": "======================================================================\nERROR: test_empty (test_client.TestCanonical.test_empty)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/ordinary/test_client.py\", line 9, in test_empty\n    def test_empty(self): self.assertEqual(lookup(\"\"), \"\")\n                                           ^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/ordinary/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n======================================================================\nERROR: test_mixed_case (test_client.TestCanonical.test_mixed_case)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/ordinary/test_client.py\", line 5, in test_mixed_case\n    def test_mixed_case(self): self.assertEqual(lookup(\"rOmE\"), \"ROME\")\n                                                ^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/ordinary/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n======================================================================\nERROR: test_punctuation (test_client.TestCanonical.test_punctuation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/ordinary/test_client.py\", line 10, in test_punctuation\n    def test_punctuation(self): self.assertEqual(lookup(\" a-b! \"), \"A-B!\")\n                                                 ^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/ordinary/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n======================================================================\nERROR: test_spaces (test_client.TestCanonical.test_spaces)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/ordinary/test_client.py\", line 6, in test_spaces\n    def test_spaces(self): self.assertEqual(lookup(\"  Maya  \"), \"MAYA\")\n                                            ^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/ordinary/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n======================================================================\nERROR: test_tabs (test_client.TestCanonical.test_tabs)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/ordinary/test_client.py\", line 7, in test_tabs\n    def test_tabs(self): self.assertEqual(lookup(\"\\tParis\\n\"), \"PARIS\")\n                                          ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/ordinary/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n======================================================================\nERROR: test_unicode (test_client.TestCanonical.test_unicode)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/ordinary/test_client.py\", line 8, in test_unicode\n    def test_unicode(self): self.assertEqual(lookup(\" café \"), \"CAFÉ\")\n                                             ^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/ordinary/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n----------------------------------------------------------------------\nRan 6 tests in 0.001s\n\nFAILED (errors=6)\n",
+      "output_truncated": false
+     },
+     "generated_call": "lookup(value)",
+     "edits": [
+      {
+       "old": "api.removed(value)",
+       "new": "api.lookup(value)"
+      }
+     ]
+    },
+    {
+     "name": "source_emphasis",
+     "status": "failed",
+     "prompt_hash": "0fd3397c9833e694b099baa2c111c7fb962a12c6071b870ea06af940ce25d937",
+     "generation_file": "source_emphasis_generation.json",
+     "generated_tokens": 4,
+     "verified_queries": 0,
+     "check": {
+      "passed": false,
+      "exit_code": 1,
+      "timeout": false,
+      "cancelled": false,
+      "seconds": 0.06523236599605298,
+      "command": [
+       "/workspace/scratch/2a9513a32f50/.nala_env/bin/python",
+       "-B",
+       "-m",
+       "unittest",
+       "-q"
+      ],
+      "output": "======================================================================\nFAIL: test_mixed_case (test_client.TestCanonical.test_mixed_case)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/source_emphasis/test_client.py\", line 5, in test_mixed_case\n    def test_mixed_case(self): self.assertEqual(lookup(\"rOmE\"), \"ROME\")\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'rome' != 'ROME'\n- rome\n+ ROME\n\n\n======================================================================\nFAIL: test_punctuation (test_client.TestCanonical.test_punctuation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/source_emphasis/test_client.py\", line 10, in test_punctuation\n    def test_punctuation(self): self.assertEqual(lookup(\" a-b! \"), \"A-B!\")\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'a-b!' != 'A-B!'\n- a-b!\n+ A-B!\n\n\n======================================================================\nFAIL: test_spaces (test_client.TestCanonical.test_spaces)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/source_emphasis/test_client.py\", line 6, in test_spaces\n    def test_spaces(self): self.assertEqual(lookup(\"  Maya  \"), \"MAYA\")\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'maya' != 'MAYA'\n- maya\n+ MAYA\n\n\n======================================================================\nFAIL: test_tabs (test_client.TestCanonical.test_tabs)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/source_emphasis/test_client.py\", line 7, in test_tabs\n    def test_tabs(self): self.assertEqual(lookup(\"\\tParis\\n\"), \"PARIS\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'paris' != 'PARIS'\n- paris\n+ PARIS\n\n\n======================================================================\nFAIL: test_unicode (test_client.TestCanonical.test_unicode)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/source_emphasis/test_client.py\", line 8, in test_unicode\n    def test_unicode(self): self.assertEqual(lookup(\" café \"), \"CAFÉ\")\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'café' != 'CAFÉ'\n- café\n+ CAFÉ\n\n\n----------------------------------------------------------------------\nRan 6 tests in 0.001s\n\nFAILED (failures=5)\n",
+      "output_truncated": false
+     },
+     "generated_call": "current(value)",
+     "edits": [
+      {
+       "old": "api.removed(value)",
+       "new": "api.current(value)"
+      }
+     ]
+    },
+    {
+     "name": "noop_attention",
+     "status": "failed",
+     "prompt_hash": "07ed5b5832e17727c313d2402ff10d6ecae3d2aa453a2c85a9ee7591ed948585",
+     "generation_file": "noop_attention_generation.json",
+     "generated_tokens": 4,
+     "verified_queries": 1,
+     "cache_edit": {
+      "layer": 21,
+      "template_index": 5,
+      "span_index": 79,
+      "indices": [
+       79
+      ],
+      "edit": {
+       "kind": "reweight",
+       "factor": 1.0
+      },
+      "predicted_margin_change": 0.0,
+      "rank": 1,
+      "tokens": [
+       " legacy"
+      ]
+     },
+     "margin": {
+      "predicted_change": 0.0,
+      "actual_change": 0.0
+     },
+     "check": {
+      "passed": false,
+      "exit_code": 1,
+      "timeout": false,
+      "cancelled": false,
+      "seconds": 0.06540512400533771,
+      "command": [
+       "/workspace/scratch/2a9513a32f50/.nala_env/bin/python",
+       "-B",
+       "-m",
+       "unittest",
+       "-q"
+      ],
+      "output": "======================================================================\nERROR: test_empty (test_client.TestCanonical.test_empty)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/noop_attention/test_client.py\", line 9, in test_empty\n    def test_empty(self): self.assertEqual(lookup(\"\"), \"\")\n                                           ^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/noop_attention/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n======================================================================\nERROR: test_mixed_case (test_client.TestCanonical.test_mixed_case)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/noop_attention/test_client.py\", line 5, in test_mixed_case\n    def test_mixed_case(self): self.assertEqual(lookup(\"rOmE\"), \"ROME\")\n                                                ^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/noop_attention/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n======================================================================\nERROR: test_punctuation (test_client.TestCanonical.test_punctuation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/noop_attention/test_client.py\", line 10, in test_punctuation\n    def test_punctuation(self): self.assertEqual(lookup(\" a-b! \"), \"A-B!\")\n                                                 ^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/noop_attention/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n======================================================================\nERROR: test_spaces (test_client.TestCanonical.test_spaces)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/noop_attention/test_client.py\", line 6, in test_spaces\n    def test_spaces(self): self.assertEqual(lookup(\"  Maya  \"), \"MAYA\")\n                                            ^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/noop_attention/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n======================================================================\nERROR: test_tabs (test_client.TestCanonical.test_tabs)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/noop_attention/test_client.py\", line 7, in test_tabs\n    def test_tabs(self): self.assertEqual(lookup(\"\\tParis\\n\"), \"PARIS\")\n                                          ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/noop_attention/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n======================================================================\nERROR: test_unicode (test_client.TestCanonical.test_unicode)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/noop_attention/test_client.py\", line 8, in test_unicode\n    def test_unicode(self): self.assertEqual(lookup(\" café \"), \"CAFÉ\")\n                                             ^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/noop_attention/client.py\", line 5, in lookup\n    return api.lookup(value)\n           ^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'lookup'\n\n----------------------------------------------------------------------\nRan 6 tests in 0.001s\n\nFAILED (errors=6)\n",
+      "output_truncated": false
+     },
+     "generated_call": "lookup(value)",
+     "edits": [
+      {
+       "old": "api.removed(value)",
+       "new": "api.lookup(value)"
+      }
+     ]
+    },
+    {
+     "name": "ranked_attention_1",
+     "status": "passed",
+     "prompt_hash": "07ed5b5832e17727c313d2402ff10d6ecae3d2aa453a2c85a9ee7591ed948585",
+     "generation_file": "ranked_attention_1_generation.json",
+     "generated_tokens": 5,
+     "verified_queries": 1,
+     "cache_edit": {
+      "layer": 21,
+      "template_index": 5,
+      "span_index": 79,
+      "indices": [
+       79
+      ],
+      "edit": {
+       "kind": "reweight",
+       "factor": 64.0
+      },
+      "predicted_margin_change": 11.36097005725132,
+      "rank": 1,
+      "tokens": [
+       " legacy"
+      ]
+     },
+     "margin": {
+      "predicted_change": 11.36097005725132,
+      "actual_change": 9.398853302001953
+     },
+     "check": {
+      "passed": true,
+      "exit_code": 0,
+      "timeout": false,
+      "cancelled": false,
+      "seconds": 0.06572759700065944,
+      "command": [
+       "/workspace/scratch/2a9513a32f50/.nala_env/bin/python",
+       "-B",
+       "-m",
+       "unittest",
+       "-q"
+      ],
+      "output": "----------------------------------------------------------------------\nRan 6 tests in 0.000s\n\nOK\n",
+      "output_truncated": false
+     },
+     "generated_call": "legacy(current(value))",
+     "edits": [
+      {
+       "old": "api.removed(value)",
+       "new": "api.legacy(api.current(value))"
+      }
+     ]
+    }
+   ],
+   "objective": {
+    "kind": "first_distinct_next_token_logit_margin",
+    "prefer": "legacy(value)",
+    "avoid": "lookup(value)",
+    "prefer_id": 39884,
+    "avoid_id": 21020,
+    "shared_token_prefix": [],
+    "prefix": "",
+    "forced_ids": [],
+    "forced_text": "",
+    "prefer_token": "legacy",
+    "avoid_token": "lookup",
+    "is_full_continuation_likelihood": false
+   },
+   "case": {
+    "id": "20-composed-legacy-extended-odds-expressions",
+    "correct": "legacy",
+    "competing": "current",
+    "legacy_examples": 8,
+    "emphasis": "full_source",
+    "avoid_call": "lookup(value)",
+    "api_style": "composed",
+    "edit_templates": [
+     {
+      "kind": "reweight",
+      "factor": 2.0
+     },
+     {
+      "kind": "reweight",
+      "factor": 4.0
+     },
+     {
+      "kind": "reweight",
+      "factor": 8.0
+     },
+     {
+      "kind": "reweight",
+      "factor": 16.0
+     },
+     {
+      "kind": "reweight",
+      "factor": 32.0
+     },
+     {
+      "kind": "reweight",
+      "factor": 64.0
+     },
+     {
+      "kind": "reweight",
+      "factor": 0.5
+     },
+     {
+      "kind": "delete"
+     },
+     {
+      "kind": "value_scale",
+      "factor": 0.0
+     },
+     {
+      "kind": "position",
+      "delta": -16.0,
+      "band": "fast"
+     },
+     {
+      "kind": "position",
+      "delta": 16.0,
+      "band": "fast"
+     },
+     {
+      "kind": "position",
+      "delta": -16.0,
+      "band": "middle"
+     },
+     {
+      "kind": "position",
+      "delta": 16.0,
+      "band": "middle"
+     },
+     {
+      "kind": "position",
+      "delta": -16.0,
+      "band": "slow"
+     },
+     {
+      "kind": "position",
+      "delta": 16.0,
+      "band": "slow"
+     }
+    ],
+    "expression_calls": true
+   },
+   "response_contract": "nested unary API calls ending in value; every call mechanically qualified with api",
+   "workspace_manifest": {
+    "api.py": "c1c6cb8cef0bf3ce912d97f116d026a5040b83bf3a6b79a5e4ad95b65e00e9a5",
+    "client.py": "f73b054e0858508d6dceb368b8b27c2588ee9dba811bdf3dc539ec3f1f3b3a0c",
+    "legacy_examples.txt": "55442b8fa46444f136c72334306a50954c048a7cdaa438ae3a7397ef4035034a",
+    "test_client.py": "df5c63a2fa7d43bd874cb3f6b75a5c6435b568eb95edd06a38ce0a2673a7bbe8"
+   },
+   "workspace_hash": "f9876a6302a8cb2402a0fc41d9c582064b8ad01750b94da5aa4e5909f74ed2e5",
+   "target_file": "client.py",
+   "protocol": {
+    "check": [
+     "/workspace/scratch/2a9513a32f50/.nala_env/bin/python",
+     "-B",
+     "-m",
+     "unittest",
+     "-q"
+    ],
+    "seed": 37,
+    "temperature": 0,
+    "max_tokens": 32,
+    "generation": "greedy, independent caches, same ordinary/attention prompt",
+    "early_stop": "first passing candidate",
+    "live_files_modified": false
+   },
+   "baseline_check": {
+    "passed": false,
+    "exit_code": 1,
+    "timeout": false,
+    "cancelled": false,
+    "seconds": 0.06488048900064314,
+    "command": [
+     "/workspace/scratch/2a9513a32f50/.nala_env/bin/python",
+     "-B",
+     "-m",
+     "unittest",
+     "-q"
+    ],
+    "output": "======================================================================\nERROR: test_empty (test_client.TestCanonical.test_empty)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/baseline/test_client.py\", line 9, in test_empty\n    def test_empty(self): self.assertEqual(lookup(\"\"), \"\")\n                                           ^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/baseline/client.py\", line 5, in lookup\n    return api.removed(value)\n           ^^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'removed'\n\n======================================================================\nERROR: test_mixed_case (test_client.TestCanonical.test_mixed_case)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/baseline/test_client.py\", line 5, in test_mixed_case\n    def test_mixed_case(self): self.assertEqual(lookup(\"rOmE\"), \"ROME\")\n                                                ^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/baseline/client.py\", line 5, in lookup\n    return api.removed(value)\n           ^^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'removed'\n\n======================================================================\nERROR: test_punctuation (test_client.TestCanonical.test_punctuation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/baseline/test_client.py\", line 10, in test_punctuation\n    def test_punctuation(self): self.assertEqual(lookup(\" a-b! \"), \"A-B!\")\n                                                 ^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/baseline/client.py\", line 5, in lookup\n    return api.removed(value)\n           ^^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'removed'\n\n======================================================================\nERROR: test_spaces (test_client.TestCanonical.test_spaces)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/baseline/test_client.py\", line 6, in test_spaces\n    def test_spaces(self): self.assertEqual(lookup(\"  Maya  \"), \"MAYA\")\n                                            ^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/baseline/client.py\", line 5, in lookup\n    return api.removed(value)\n           ^^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'removed'\n\n======================================================================\nERROR: test_tabs (test_client.TestCanonical.test_tabs)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/baseline/test_client.py\", line 7, in test_tabs\n    def test_tabs(self): self.assertEqual(lookup(\"\\tParis\\n\"), \"PARIS\")\n                                          ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/baseline/client.py\", line 5, in lookup\n    return api.removed(value)\n           ^^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'removed'\n\n======================================================================\nERROR: test_unicode (test_client.TestCanonical.test_unicode)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/baseline/test_client.py\", line 8, in test_unicode\n    def test_unicode(self): self.assertEqual(lookup(\" café \"), \"CAFÉ\")\n                                             ^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/2a9513a32f50/experiments/real_repair_confirmation/run/baseline/client.py\", line 5, in lookup\n    return api.removed(value)\n           ^^^^^^^^^^^\nAttributeError: module 'api' has no attribute 'removed'\n\n----------------------------------------------------------------------\nRan 6 tests in 0.001s\n\nFAILED (errors=6)\n",
+    "output_truncated": false
+   },
+   "selection": {
+    "method": "exact finite local write contracted with baseline gradient",
+    "candidate_count": 1,
+    "counts": {
+     "model_calls_for_scoring": 0,
+     "backward": 0
+    },
+    "baseline_margin": -6.683778762817383,
+    "frozen_candidate_replay": true
+   },
+   "noop_matches_ordinary_tokens": true,
+   "edits": [
+    {
+     "old": "api.removed(value)",
+     "new": "api.legacy(api.current(value))"
+    }
+   ]
+  },
+  "confirmation_summary": {
+   "assessment": {
+    "qualifies": true,
+    "outcome": "matched_attention_repair",
+    "both_controls_failed_real_check": true,
+    "selected": "ranked_attention_1",
+    "same_ordinary_attention_prompt": true,
+    "same_check": true,
+    "branches": [
+     {
+      "name": "ordinary",
+      "status": "failed",
+      "exit_code": 1,
+      "verified_queries": 0
+     },
+     {
+      "name": "source_emphasis",
+      "status": "failed",
+      "exit_code": 1,
+      "verified_queries": 0
+     },
+     {
+      "name": "noop_attention",
+      "status": "failed",
+      "exit_code": 1,
+      "verified_queries": 1
+     },
+     {
+      "name": "ranked_attention_1",
+      "status": "passed",
+      "exit_code": 0,
+      "verified_queries": 1
+     }
+    ]
+   },
+   "discovery_report_sha256": "f41f33083ce91e5b4f47830ddd39cef1492fce84851c59bbab7819bc4bbf6dba",
+   "report": "run/report.json",
+   "report_sha256": "cc96eef199c01529f750fdcdb98ad2bea6fb64d0ad9595091d8442049a573de5",
+   "same_ordinary_token_ids": true,
+   "same_attention_token_ids": true,
+   "noop_matches_ordinary_tokens": true,
+   "confirmed": true
+  },
+  "scope": "Exploratorily selected synthetic API-expression repair. Correct ranking target supplied from source; not autonomous diagnosis or a benchmark."
+ }
+}
